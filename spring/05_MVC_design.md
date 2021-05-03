@@ -32,8 +32,6 @@
 
     `JobsDAO.java`
 
-![image-20210502001938740](C:\Users\aodeh\AppData\Roaming\Typora\typora-user-images\image-20210502001938740.png)
-
 - View
   
   - JSP가 화면 기능을 담당한다
@@ -43,14 +41,15 @@
   - `input_view.html`
   
     `output_view.jsp`
-  
-  
 
-- import/export
-  - export : war Export ->destination설정->export source files 체크 -> finish
-  - import : war file import
-  
-  
+
+
+cf) import/export
+
+- export : war Export ->destination설정->export source files 체크 -> finish
+- import : war file import
+
+![](..\img\MVCdesign.png)
 
 ### 동작순서
 

@@ -148,3 +148,28 @@ public class FirstServlet extends HttpServlet { //httpServlet를 상속받는 �
 # 서블릿 기초
 
 > 톰캣과 같은 WAS(Web Application Server, 웹 어플리케이션 서버)가 처음 나왔을때 웹 브라우저 요청을 스레드 방식으로 처리하는 기술이 서블릿이다.
+
+- HttpServletRequest 여러가지 메서드 p178 참조
+
+- HttpServletResponse 메서드 p179 참조
+
+- `<form>` 태그 여러 속성
+
+  | 속성    | 기능                                                       |
+  | ------- | ---------------------------------------------------------- |
+  | name    | `<form>` 태그의 이름 지정                                  |
+  | method  | `<form>` 태그 안에서 데이터를 전송할 방법을 지정(GET/POST) |
+  | action  | `<form> `태그에서 데이터를 전송할 서블릿이나 JSP를 지정    |
+  | encType | `<form>` 태그에서 전송할 데이터의 encoding 타입을 지정     |
+
+
+
+- `<form>` 태그로 전송된 데이터를 받아 오는 메서드
+
+  | 메서드                                   | 기능                                                         |
+  | ---------------------------------------- | ------------------------------------------------------------ |
+  | String getParameter(string name)         | name의 값을 알고 있을 때 name에 대한 전송된 값을 받아오는데 사용 |
+  | String[] getParameterValues(string name) | 같은 name에 대한 여러 개의 값을 얻을 때 사용                 |
+  | Enumeration getParameterNames()          | name 값을 모를 때 사용                                       |
+
+  
