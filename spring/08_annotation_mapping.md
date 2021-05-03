@@ -4,13 +4,13 @@
 
 #### 1. create Servlet
 
-![image-20210503132745360](..\img\annotation1.png)
+![image-20210503132745360](../img/annotation1.png)
 
 
 
 #### 2 . next
 
-![image-20210503135023197](..\img\annotation2.png)
+![image-20210503135023197](../img/annotation2.png)
 
 
 
@@ -80,4 +80,4 @@ public class CmdServlet extends HttpServlet {
 
 #### 3. 실행
 
-![image-20210503132556712](..\img\annotation3.png)
+![image-20210503132556712](../img/annotation3.png)

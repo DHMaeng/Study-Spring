@@ -43,6 +43,8 @@
 
 ![servlet project 기본구성](https://user-images.githubusercontent.com/80496345/116816043-51778500-ab9b-11eb-8e15-da7354ced272.jpg)
 
+---
+
 #### 2. 서블릿 생명주기 메서드 구현
 
 - 클래스에 원하는 API 상속( ex) HttpServlet) 하여 자바 코드 생성
@@ -102,7 +104,7 @@ public class FirstServlet extends HttpServlet { //httpServlet를 상속받는 �
 
 ```
 
-
+---
 
 #### 3. 서블릿 매핑작업 
 
@@ -131,11 +133,13 @@ public class FirstServlet extends HttpServlet { //httpServlet를 상속받는 �
 
 ![image-20210430165104220](https://user-images.githubusercontent.com/80496345/116668918-ebdb9b00-a9d8-11eb-8631-99318a1eae23.png)
 
+---
+
 #### 4. 톰캣에 프로젝트 실행
 
 `Tomcat v9.0 Server at localhost [stopped,Republish]` 오른쪽 버튼 누르고 해당 프로젝트를 add한다.
 
-
+---
 
 #### 5. 브라우저에서 서블릿 요청
 
@@ -144,6 +148,8 @@ public class FirstServlet extends HttpServlet { //httpServlet를 상속받는 �
 `http://localhost:9090/web_week5/first`
 
 
+
+---
 
 # 서블릿 기초
 

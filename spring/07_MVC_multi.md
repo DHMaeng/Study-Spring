@@ -26,7 +26,7 @@
 
 ### 2. 주소로 호출
 
-![mvc2_input](..\img\mvc2_input.png)
+![mvc2_input](../img/mvc2_input.png)
 
 - 첫번째 레코드 : `http://localhost:9090/web_week6?controller?command=1`
 - 두번째 레코드 : `http://localhost:9090/web_week6?controller?command=2`

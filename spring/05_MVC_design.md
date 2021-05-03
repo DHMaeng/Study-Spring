@@ -49,7 +49,7 @@ cf) import/export
 - export : war Export ->destination설정->export source files 체크 -> finish
 - import : war file import
 
-![](..\img\MVCdesign.png)
+![](../img/MVC_design.png)
 
 ### 동작순서
 

@@ -11,7 +11,7 @@
 - Apache 아파치 ⊂ Web Server 웹서버
 - Tomcat 톰캣 ⊂ WAS 와스 
 
-
+---
 
 ### 1. WAS?
 
@@ -26,8 +26,8 @@
   - **Servlet Contatiner?**
 
     > servlet을 compile 하여 class 파일로 변환하여 담아 놓아 관리하는 컨테이너.
-    
-    
+
+---
 
 ### 2.  그럼 왜 톰켓 자체를 웹서버로 사용하지 않는가?
 

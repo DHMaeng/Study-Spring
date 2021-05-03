@@ -1,12 +1,12 @@
 ## MVC 활용1 `ArrayList<String>` 으로 출력
 
-![image-20210503131012779](..\img\MVC_design.png)
+![image-20210503131012779](../img/MVC_design.png)
 
 ---
 
 ### project 구조
 
-![mvcproject](..\img\mvc_project.png)
+![mvcproject](../img/mvc_project.png)
 
 ---
 
@@ -71,4 +71,5 @@ res.sendRedirect("./day27/output_view2.jsp");
 
 > input.jsp 제출을 실행하면 마지막으로 이 화면을 출력한다.
 
-![mvc_output](..\img\mvc_output.png)
+![mvc_output](../img/mvc_output.png)
+

@@ -4,7 +4,7 @@
 
 사용자로부터 ID/Password를 받아와 정보 테이블(DB)에 회원 정보 조회
 
-![mvc3_design](..\img\mvc3_design.png)
+![mvc3_design](../img/mvc3_design.png)
 
 ## DAO(Data Access Object)
 
@@ -205,15 +205,15 @@ public class LoginDAO {
 
 - `Employee table`
 
-![mvc3_table](..\img\mvc3_table.png)
+![mvc3_table](../img/mvc3_table.png)
 
 - `login.jsp` : id=100, pwd= King
 
-![mvc3_login](..\img\mvc3_login.png)
+![mvc3_login](../img/mvc3_login.png)
 
 
 
 - `result.jsp`
 
-![mvc3_result](..\img\mvc3_result.png)
+![mvc3_result](../img/mvc3_result.png)
 
