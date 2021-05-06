@@ -102,7 +102,7 @@ public class PersonTest {
 
 - `person.xml`
 
-```xml
+​```xml
  <bean id="personService" class="com.spring.ex01.PersonServiceImpl"> <!-- 2. xml에서 서비스랑 impl이랑 연결하네 -->
       <property name="name">
          <value>홍길동</value> <!--  key/value => name/홍길동로 값 전달 impl에 -->
@@ -113,7 +113,7 @@ public class PersonTest {
 
 - `PersonService.java`
 
-```java
+​```java
 package com.spring.ex01;
 
 public interface PersonService {
@@ -143,6 +143,8 @@ public class PersonServiceImpl implements PersonService {
 		System.out.println("나이: " + age);
 	}
 }
+
+```
 
 
 
@@ -195,30 +197,22 @@ AOP방법은 핵심 기능과 공통 기능을 분리 시켜놓고,
 
 ### 주요용어
 
-```
 - Aspect : 공통기능
-
 - Advice : Aspect의 기능 자체
-
 - Jointpoint : Advice를 적용해야 되는 부분(ex : 필드, 메소드 / 스프링에서는 메소드만 해당)
-
 - Pointcut : Jointpoint의 부분으로 실제로 Advice가 적용된 부분
-
 - Weaving : Advice를 핵심기능에 적용하는 행위
-```
 
- 
+
 
 스프링에서 AOP 구현방법 : proxy를 이용한다.
 
- ```
- client(호출부) -> proxy -> Target(핵심기능)
- ```
-
+```
+client(호출부) -> proxy -> Target(핵심기능)
+```
 - step1. client가 프록시한테 요청해서 공통기능을 실행
 - stpe2. 프록시가 다시 Target으로 가서 핵심기능을 실행
 - step3. 다시 공통기능을 실행하기 위해, 프록시로 와서 공통기능 실행
-
 (프록시가 중간에서 '대행' 역할을 한다.)
 
 
