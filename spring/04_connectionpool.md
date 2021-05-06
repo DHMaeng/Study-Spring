@@ -75,9 +75,7 @@ DataBase Connection Pool 의 약자로 DB와 커넥션을 맺고 있는 객체�
 
 ## 3. Apache의 Commons DBCP
 
-커넥션 풀에는 Commons DBCP와 Tomcat-JDBC, BoneCP, HikariCP 등이 있는데, 우리는 이미 스프링 웹 프로젝트에서 자신도 모르게 사용하고 있을 수 있다. 본인 같은 경우는 Commons DBCP 라이브러리를 주로 쓰는 것만 봤다.
-
-
+커넥션 풀에는 Commons DBCP와 Tomcat-JDBC, BoneCP, HikariCP 등이 있는데, 우리는 이미 스프링 웹 프로젝트에서 자신도 모르게 사용하고 있을 수 있다. 
 
 ### Commons DBCP 스프링 설정
 
