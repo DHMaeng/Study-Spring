@@ -74,7 +74,7 @@ DI는 그 클래스의 생성자나 set메소드로 필요로하는 객체를 �
 
 project19
 
-- `PersonTest`
+- `PersonTest.java`
 
 ```java
 package com.spring.ex01;
@@ -96,30 +96,30 @@ public class PersonTest {
 		person.sayHello(); //5.impl에 들어간 값 호출!
 	}
 }
-
+```
 
 
 
 - `person.xml`
 
-​```xml
+```xml
  <bean id="personService" class="com.spring.ex01.PersonServiceImpl"> <!-- 2. xml에서 서비스랑 impl이랑 연결하네 -->
       <property name="name">
          <value>홍길동</value> <!--  key/value => name/홍길동로 값 전달 impl에 -->
       </property>
    </bean>
+```
 
 
 
 - `PersonService.java`
 
-​```java
+```java
 package com.spring.ex01;
 
 public interface PersonService {
 	public void sayHello();
 }
-
 ```
 
 
