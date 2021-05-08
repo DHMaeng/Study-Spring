@@ -1,5 +1,3 @@
-
-
 # 스프링 애너테이션2
 
 ## @Autowired 이용해 빈 주입하기
@@ -8,7 +6,7 @@
 
 
 
-orm의 mtbatis사용
+orm의 mybatis사용
 
 
 
@@ -110,6 +108,14 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 <img src="../img/Spring_beans.png" style="zoom:80%;" />
 
+action-mybatis.xml 에서는 sqlSessionFactory와 sqlSession, dataSource 객체를 xml에 기술하여 미리 생성(컨테이너에 등록)합니다. 
+
+(1) dataSource에는 DB연결정보가 담겨있고, 
+
+(2) sqlSessionFacory 클래스는 sqlSession을 만드는 역할을 하며, 
+
+(3) SqlSession 클래스는 Sql문을 실제 호출해주는 역할을 한니다. SqlSessionFactory 클래스의 빈 생성만 따로 보면 dataSource객체를 생성하고, modelConfig와 mapper 위치를 지정해 주는 것을 볼 수 있습니다.
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
@@ -177,7 +183,7 @@ jdbc.password=1234
 
 ![](../img/memberform.jpg)
 
-```java
+​```java
 	/*@RequestMapping(value = { "/member/loginForm.do", "/member/memberForm.do" }, method =  RequestMethod.GET)*/
 	@RequestMapping(value = "/member/*Form.do", method =  RequestMethod.GET) // 1 memberForm.jsp 연결
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -364,8 +370,3 @@ public class MemberVO {
 
 
 
-
-
-
-
-- 
