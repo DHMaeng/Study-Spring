@@ -11,9 +11,9 @@
 - [서블릿 2](./spring/11_servlet2.md)
 - [xml](./spring/12_xml.md)
 - [쿠키와 세션/ JSP, 액션태그, JSTL, EL/ ajax](./spring/13_summary.md)
-- [Spring](./spring/Spring.md)
-- [Spring_어노테이션](./spring/Spring_annotation.md)
-- [Spring_어노테이션2](./spring/Spring_annotation2.md)
+- [Spring](./spring/14_Spring.md)
+- [Spring_어노테이션](./spring/15_Spring_annotation.md)
+- [Spring_어노테이션2](./spring/16_Spring_annotation2.md)
 
 ## License
 
