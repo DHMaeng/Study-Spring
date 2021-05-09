@@ -9,9 +9,10 @@
 - [MVC 활용3 login](./spring/09_MVC_login.md)
 - [커넥션 풀2](./spring/10_connectionpool2.md)
 - [서블릿 2](./spring/11_servlet2.md)
+- [xml](./spring/12_xml.md)
+- [쿠키와 세션/ JSP, 액션태그, JSTL, EL/ ajax](./spring/13_summary.md)
 - [Spring](./spring/Spring.md)
 - [Spring_어노테이션](./spring/Spring_annotation.md)
-
 - [Spring_어노테이션2](./spring/Spring_annotation2.md)
 
 ## License
