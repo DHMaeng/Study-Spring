@@ -4,7 +4,7 @@
 
 spring legacy project(spring MVC project) 생성시 컨텍스트 이름이 프로젝트 이름이 아니고 Top level package의 이름이 된다.
 
-<img src="C:\Users\aodeh\git\Study-spring\img\path.jpg" style="zoom:50%;" />
+<img src="../img/path.jpg" style="zoom:50%;" />
 
 예를들어 다음과 같은 프로젝트에서 web browser 호출시
 
@@ -112,11 +112,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 ### 자바클래스와 JSP구현
 
-<img src="C:\Users\aodeh\git\Study-spring\img\spring_annotation3.jpg" style="zoom:50%;" />
+<img src="../img/spring_annotation3.jpg" style="zoom:50%;" />
 
 - `MemberControllerImpl.java`
 
-![](C:\Users\aodeh\git\Study-spring\img\memberform.jpg)
+<img src="../img/memberform.jpg" style="zoom:50%;" />
 
 ```java
 	/*@RequestMapping(value = { "/member/loginForm.do", "/member/memberForm.do" }, method =  RequestMethod.GET)*/
@@ -129,7 +129,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 }
 ```
 
-![](C:\Users\aodeh\git\Study-spring\img\addmember.jpg)
+<img src="../img/addmember.jpg" style="zoom:50%;" />
 
 ```java
 	@Override
@@ -146,7 +146,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
 
-![](C:\Users\aodeh\git\Study-spring\img\listmember.jpg)
+<img src="../img/listmember.jpg" style="zoom:50%;" />
 
 ```java
 	@Override
@@ -160,7 +160,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	}
 ```
 
-![](C:\Users\aodeh\git\Study-spring\img\removemember.jpg)
+<img src="../img/removemember.jpg" style="zoom:50%;" />
 
 ```java
 	@Override
@@ -217,7 +217,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 >데이터베이스 연동 시 반환되는 값을 저장할 빈이나 트랜잭션, 데이터 소스 등 마이바티스 관련 정보를 설정한다.
 
-<img src="C:\Users\aodeh\git\Study-spring\img\Spring_beans.png" style="zoom:80%;" />
+<img src="../img/Spring_beans.png" style="zoom:67%;" />
 
 action-mybatis.xml 에서는 sqlSessionFactory와 sqlSession, dataSource 객체를 xml에 기술하여 미리 생성(컨테이너에 등록)합니다. 
 
