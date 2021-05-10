@@ -9,11 +9,15 @@
 - [MVC 활용3 login](./spring/09_MVC_login.md)
 - [커넥션 풀2](./spring/10_connectionpool2.md)
 - [서블릿 2](./spring/11_servlet2.md)
-- [xml](./spring/12_xml.md)
+- [xml](./spring/12_XML.md)
 - [쿠키와 세션/ JSP, 액션태그, JSTL, EL/ ajax](./spring/13_summary.md)
 - [Spring](./spring/14_Spring.md)
 - [Spring_어노테이션](./spring/15_Spring_annotation.md)
 - [Spring_어노테이션2](./spring/16_Spring_annotation2.md)
+- [Maven 소개/이론](./spring/17_Maven1.md)
+- [메이븐과 스프링 STS 사용법](./spring/18_Maven2.md)
+
+
 
 ## License
 
