@@ -97,6 +97,12 @@ controller가 mc.sn.controller.ControllerServlet로 맵핑 됐기때문에 일�
 
 ### 3. controllerServlet.java
 
+> 만약 doget을 오버라이딩 안하고 doPost 메소드만 오버라이딩 하면 GET 방식 요청은 서비스 될 수 없어 실행 시 에러가 발생한다
+>
+> 서비스메소드 호출 전에 HttpServletRequest객체와 HttpServletResponse객체를 생성한다
+>
+> Session은 서버측에서만 설정 가능하다
+
 ```java
 //생명주기에따라 init(),doget(),dopost(),destroy()가 실행된다.
 package mc.sn.controller;
