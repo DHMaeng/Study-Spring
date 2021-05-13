@@ -403,3 +403,9 @@ References : https://dadmi97.tistory.com/79
 
 web에서 ~~.do 로 요청 ->controller ?! -> service -> dao ->member.xml -> (memberconfig.xml) -> (memberVO.java) -> action-mybatis.xml ->database->  web.xml 로 들어가고 다시 역순으로 받아서 controller -> action-servlet.xml -> *.jsp -> 
 
+
+
+
+
+my-batis 공부 !! https://coderbycode.tistory.com/52
+
