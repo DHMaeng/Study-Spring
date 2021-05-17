@@ -178,8 +178,21 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 - `MemberServiceImpl.java`
 
-```
-
+```java
+@Service("memberService")
+@Transactional(propagation = Propagation.REQUIRED)
+public class MemberServiceImpl implements MemberService {
+	@Autowired
+	private MemberDAO memberDAO;
+	
+	@Override
+	public MemberVO login(MemberVO memberVO) throws DataAccessException{
+		MemberVO vo = null;
+		vo = memberDAO.loginById(memberVO);
+		System.out.println("service in");
+		return vo;
+	}
+}
 ```
 
 
@@ -253,16 +266,18 @@ action-mybatis.xml 에서는 sqlSessionFactory와 sqlSession, dataSource 객체�
 	
  	<!-- connection 반환하는 작업 -->
     <!-- datasource를 이용해 접속하고 resources의 myabatis와 연결 -->
- 	<bean id="sqlSessionFactory" 
+ 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
-			value="classpath:mybatis/model/modelConfig.xml" />
+			value="classpath:mybatis/model/modelConfig.xml" /> 
+     		<!-- modelConfig.xml와 연결하여 Member VO 설정 -->
 		<property name="mapperLocations" value="classpath:mybatis/mappers/*.xml" /> 
+        <!-- 쿼리(select,insert 등등) 관리 -->
 	</bean>
 
-	<!-- sql session query 날리는 부분 sqlSessionFactory 참조-->
-	<bean id="sqlSession"
+	<!-- Dao에 있는 sqlSession 인스턴스 생성 -->
+	<bean id="sqlSession" 
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
@@ -281,9 +296,9 @@ action-mybatis.xml 에서는 sqlSessionFactory와 sqlSession, dataSource 객체�
 
 - `jdbc.properties`
 
-> 이 정보로 connection pool과 연결(?)되어 접근한다.
+> 이 정보로 connection pool과 연결되어 접근한다.
 
-```java
+```
 jdbc.driverClassName=oracle.jdbc.driver.OracleDriver
 jdbc.url=jdbc:oracle:thin:@localhost:1521:xe
 jdbc.username=hr
@@ -298,6 +313,8 @@ jdbc.password=1234
 
 위의 패키지를 생성하여 모델과 sql을 기술할 **member.xml(class.xml)**과 모델들을 한꺼번에 쉽게(alias) 관리할 **modelConfig.xml** 파일을 생성합니다.
 
+
+
 - `member.xml`
 
 > DAO에서 빠져나와 실질적인 Query를 날리는 부분이다. Query를 잘 모르는 개발자에게 부담을 줄이고자 함.
@@ -309,7 +326,7 @@ jdbc.password=1234
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--property는 memberVO클래스의 각 변수에 들어가고 column은 table 값이다 즉, 각각을 연결시켜준다.-->
+<!--property는 memberVO클래스의 각 변수에 들어가고 column은 table 값이다 두 요소의 값을 동일화시키자.-->
 <mapper namespace="mapper.member">
 	<resultMap id="memResult" type="memberVO">
 		<result property="id" column="id" />
@@ -344,9 +361,7 @@ jdbc.password=1234
 
 - `modelConfig.xml`
 
-> memberVO로 바로 접근가능하게 경로 설정 해줌
->
-> 아래의 파일은 **modelConfig.xml 파일**입니다. modelConfig 파일에서는 <typeAliases> 태그를 이용하여 긴 클래스명을 간략하게 사용할 수 있도록 합니다. 또한 모델을 등록함으로써 모델들을 관리하는 역할도 할 수 있습니다.
+> 아까 action-mybatis.xml에서 연결한 부분으로 <typeAliases> 태그를 이용하여 긴 클래스명을 간략하게 사용할 수 있도록 한다. memberVO로 바로 접근 가능. 또한 모델을 등록함으로써 모델들을 관리하는 역할도 할 수 있다.
 
 ```XML
 <!-- 이렇게 줄여서 사용하겠다 -->
@@ -397,15 +412,11 @@ References : https://dadmi97.tistory.com/79
 
 
 
-생각해보기...
-
-**Backend -> frontend로 생각을 하자**
-
-web에서 ~~.do 로 요청 ->controller ?! -> service -> dao ->member.xml -> (memberconfig.xml) -> (memberVO.java) -> action-mybatis.xml ->database->  web.xml 로 들어가고 다시 역순으로 받아서 controller -> action-servlet.xml -> *.jsp -> 
 
 
+**my-batis 참조 !!** 
 
+https://coderbycode.tistory.com/52
 
-
-my-batis 공부 !! https://coderbycode.tistory.com/52
+https://dadmi97.tistory.com/79
 
