@@ -87,7 +87,7 @@ jdbc.password=1234
 
 
 
-![img](C:\Users\aodeh\git\Study-spring\img\mybatis2.png)
+![img](../img/mybatis2.png)
 
 ​																					mybatis 패키지
 
