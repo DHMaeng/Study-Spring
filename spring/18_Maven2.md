@@ -20,11 +20,9 @@ spring legacy project(spring MVC project) 생성시 컨텍스트 이름이 프�
 
 
 
-### 프로젝트 만들기!! 순서도 중요!
+## 프로젝트 만들기!! 순서도 중요!
 
-- 프로젝트 만드는 순서(책순서) : 프로젝트생성 -> Mybatis 관련 xml 파일 추가 -> 자바클래스와 JSP구현
-
-- 동작순서는 당연히 다르다.
+### 1. 기본 스프링MVC생성
 
 만들면 다음과 같이 기본적으로 생성이 된다.
 
@@ -110,24 +108,58 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
 
-### 자바클래스와 JSP구현
+### 1-2. Controller
 
 <img src="../img/spring_annotation3.jpg" style="zoom:50%;" />
 
-- `MemberControllerImpl.java`
+#### 1. `MemberControllerImpl.java`
+
+> service/dao/vo를 사용할 경우 이렇게 연결해 줘야하고 서비스 부분을 사용할 시 역순으로 호출하기때문에코딩시 vo/dao/serivce/controller 순으로 작성하자. 
+
+```java
+@Autowired
+private MemberService memberService;-> @Service("memberService") //memberService.java
+@Autowired
+private MemberVO memberVO ; -> @Component("memberVO") //memberVO.java 각각 이렇게 연결
+```
+
+1. `*Form.do`
 
 <img src="../img/memberform.jpg" style="zoom:50%;" />
 
 ```java
-	/*@RequestMapping(value = { "/member/loginForm.do", "/member/memberForm.do" }, method =  RequestMethod.GET)*/
-	@RequestMapping(value = "/member/*Form.do", method =  RequestMethod.GET) // 1 memberForm.jsp 연결
+	@RequestMapping(value = "/member/memberForm.do", method =  RequestMethod.GET) // 1 memberForm.jsp 연결
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
+		String viewName = getViewName(request); //request에 memberForm.do가 드감
+		ModelAndView mav = new ModelAndView(); //ModerAndView 인스턴스 생성
+		mav.setViewName(viewName); //뷰의 이름 설정 ModerAndView에 뷰의 경로를 담는다.
+		return mav; //ModerAndView 객체를 리턴
 }
 ```
+
+
+
+뷰의 이름(경로)를 설정해주려면
+
+setViewName() 메소드를 이용한다.
+
+```
+mav.setViewName("뷰의 경로");
+```
+
+ 
+
+데이터를 보낼때는
+
+addObject() 메소드를 이용한다.
+
+```
+mav.addObject("변수 이름", "데이터 값");
+```
+
+
+
+2. `addMember.do`
 
 <img src="../img/addmember.jpg" style="zoom:50%;" />
 
@@ -138,13 +170,15 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
-		result = memberService.addMember(member);
+		result = memberService.addMember(member); 
 		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
 	}
 ```
 
 
+
+3. `listMember.do`
 
 <img src="../img/listmember.jpg" style="zoom:50%;" />
 
@@ -160,6 +194,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	}
 ```
 
+
+
+4. `removeMember.do`
+
 <img src="../img/removemember.jpg" style="zoom:50%;" />
 
 ```java
@@ -171,6 +209,225 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		memberService.removeMember(id);
 		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
+	}
+```
+
+
+
+5. `searchMember.do`
+
+<img src="../img/update.png" style="zoom:50%;" />
+
+```java
+@Override
+	@RequestMapping(value="/member/searchMember.do" ,method = RequestMethod.GET)
+	public ModelAndView searchMember(@RequestParam("id") String id, 
+			           HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		MemberVO vo = memberService.searchMember(id);
+		ModelAndView mav = new ModelAndView("forward:/member/updateForm.do");
+		mav.addObject("member",vo);
+		return mav;
+	}
+```
+
+
+
+6. `updateMember.do`
+
+```java
+@Override
+	@RequestMapping(value="/member/updateMember.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("member") MemberVO member,
+			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = memberService.updateMember(member);
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		return mav;
+	}
+```
+
+
+
+
+
+### 1-3 IN-OUT 확인
+
+1. `memberForm.jsp`
+
+> controller의 return값 mav에 있는 *Form.do을 통해 호출된다
+>
+> controller와 post/get 매칭해줘야하고 .jsp를 보여준 뒤 submit을 하면 action form속성을 이용해 addMember.do랑 연결된다.
+
+```jsp
+<form method="post"   action="${contextPath}/member/addMember.do">
+```
+
+
+
+2. `listMember.jsp`
+
+```jsp
+<body>
+<table border="1"  align="center"  width="80%">
+    <tr align="center"   bgcolor="lightgreen">
+      <td ><b>아이디</b></td>
+      <td><b>비밀번호</b></td>
+      <td><b>이름</b></td>
+      <td><b>이메일</b></td>
+      <td><b>가입일</b></td>
+      <td><b>삭제</b></td>
+   </tr>
+   
+ <c:forEach var="member" items="${membersList}" >     
+   <tr align="center">
+      <td>
+      	<a href="${contextPath}/member/searchMember.do?id=${member.id }">${member.id}</a>
+      </td>
+      <td>${member.pwd}</td>
+      <td>${member.name}</td>
+      <td>${member.email}</td>
+      <td>${member.joinDate}</td>
+      <td><a href="${contextPath}/member/removeMember.do?id=${member.id }">삭제하기</a></td>
+    </tr>
+  </c:forEach>   
+</table>
+<a  href="${contextPath}/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
+</body>
+```
+
+
+
+3. `update.jsp`
+
+> value= "${member.id}"를 통해 자신이 수정하고자 하는 값을 보여준다. 이 값을 수정하고 updateMember.do로 보내게 된다.
+
+```jsp
+<body>
+	<form method="get"   action="${contextPath}/member/updateMember.do">
+	<h1  class="text_center">회원 가입창</h1>
+	<table  align="center">
+	   <tr>
+	      <td width="200"><p align="right">아이디</td>
+	      <td width="400"><input type="text" name="id" value="${member.id}"></td>
+	   </tr>
+	   <tr>
+	      <td width="200"><p align="right">비밀번호</td>
+	      <td width="400"><input type="password" name="pwd" value="${member.pwd}"></td>
+	    </tr>
+	    <tr>
+	       <td width="200"><p align="right">이름</td>
+	       <td width="400"><p><input type="text" name="name" value="${member.name}"></td>
+	    </tr>
+	    <tr>
+	       <td width="200"><p align="right">이메일</td>
+	       <td width="400"><p><input type="text" name="email" value="${member.email}"></td>
+	    </tr>
+	    <tr>
+	       <td width="200"><p>&nbsp;</p></td>
+	       <td width="400"><input type="submit" value="수정하기"><input type="reset" value="다시입력"></td>
+	    </tr>
+	</table>
+	</form>
+</body>
+```
+
+
+
+---
+
+
+
+### 2. 비즈니스서비스연결
+
+- `MemberVO.java`
+
+```java
+@Component("memberVO")
+public class MemberVO {
+	private String id;
+	private String pwd;
+	private String name;
+	private String email;
+	private Date joinDate;
+	
+	..생략
+```
+
+
+
+- `MemberDAO.java`
+
+> **무엇을 할것인가? 에 따른 입출력을  sql쿼리를 고려하여 잘생각해봐야 한다!!!!!!!!!**
+>
+> D(delete)L(insert)U(update)는 테이블에 변경을 가하는 메소드인데 변경된 라인수가 몇 개인지 출력해줘야 하기 때문에 int의 출력값을 가진다.
+
+
+
+#### **SqlSession 클래스에서 제공하는 여러가지 메소드**
+
+| **메소드** [출력 메소드(입력)]         | **기능**                                                     |
+| -------------------------------------- | ------------------------------------------------------------ |
+| **List selectList(query_id)**          | id에 대한 select 문을 실행한 후 여러 레코드를 List로 반환    |
+| **List selectList(query_id, 조건)**    | id에 대한 select 문을 실행하면서 사용되는 조건도 전달        |
+| **T selectOne(query_id)**              | id에 대한 select 문을 실행한 후 지정된 타입으로 한 개의 레코드 반환 |
+| **T selectOne(query_id, 조건)**        | id에 대한 select 문을 실행하면서 사용되는 조건도 전달        |
+| **Map<K,V> selectMap(query_id, 조건)** | id에 대한 select 문을 실행하면서 사용되는 조건도 전달. Map 타입으로 레코드 반환 |
+| **int insert(query_id, Object obj)**   | id에 대한 insert문을 실행하면서 객체의 값을 테이블에 추가    |
+| **int update(query_id, Object obj)**   | obj 객체의 값을 조건문의 수정 값으로 사용해 id데 대한 update문 실행 |
+| **int delete(query_id, Object obj)**   | obj 객체의 값을 조건문의 조건 값으로 사용해 id데 대한 delete문 실행 |
+
+1. 데이터 베이스에 있는 모든 것을 가져오기 때문에  input은 필요없고 output을 list로 받아오자.
+
+```java
+public List selectAllMemberList() throws DataAccessException;
+```
+
+2. table에 있는 값을 memberVO에 담고자 하니까  input은 memberVO를 보내 table값과 매칭하고자 한다.
+
+```java
+public int insertMember(MemberVO memberVO) throws DataAccessException ;
+```
+
+3. table에 있는 한 행의 값을 지정한 id값으로 삭제하려고 하니 input은 id값이 된다.
+
+```java
+public int deleteMember(String id) throws DataAccessException;
+```
+
+4. table에 있는 한 행의 값을 지정한 id를 통해 불러오려고 하니 input은 id값이 되고 output은 memberVO가 된다.
+
+```java
+public MemberVO searchMember(String id) throws DataAccessException;
+```
+
+5. table에 있는 한행의 값을 지정한 한행으로 수정하고자 하니 input은 MemberVO값이 된다.
+
+```java
+public int updateMember(MemberVO memberVO) throws DataAccessException;
+```
+
+
+
+- `MemberDAOImpl.java`
+
+> 데이터베이스 작업을 클레스가 아니고 xml과 연결하여 외부로 다 뺐다.
+>
+> member.xml로 빼내고 autowired로 연결한다.
+
+```java
+@Repository("memberDAO") //sql, connection, rs 등등 다없네
+public class MemberDAOImpl implements MemberDAO {
+	@Autowired
+	private SqlSession sqlSession;
+    
+	@Override
+	public List selectAllMemberList() throws DataAccessException {
+		List<MemberVO> membersList = null;
+		//아래 호출하면 member.xml과 mybatis.xml(이건 미리 다 세팅이 되어있다)이 알아서 커넥션하고 쿼리 날리고 해서 정보를 가져와 리턴해준다. 호출하면 web.xml 의listener -> action-mybatis.xml의sqlssion -> sqlfactory 자세한건 밑에 코드 
+		membersList = sqlSession.selectList("mapper.member.selectAllMemberList"); 
+		return membersList;
 	}
 ```
 
@@ -197,26 +454,7 @@ public class MemberServiceImpl implements MemberService {
 
 
 
-- `MemberDAOImpl.java`
-
-> 데이터베이스 작업을 클레스가 아니고 xml과 연결하여 외부로 다 뺐다.
->
-> member.xml로 빼내고 autowired로 연결한다.
-
-```java
-@Repository("memberDAO") //sql, connection, rs 등등 다없네
-public class MemberDAOImpl implements MemberDAO {
-	@Autowired
-	private SqlSession sqlSession;
-    
-	@Override
-	public List selectAllMemberList() throws DataAccessException {
-		List<MemberVO> membersList = null;
-		//아래 호출하면 member.xml과 mybatis.xml(이건 미리 다 세팅이 되어있다)이 알아서 커넥션하고 쿼리 날리고 해서 정보를 가져와 리턴해준다. 호출하면 web.xml 의listener -> action-mybatis.xml의sqlssion -> sqlfactory 자세한건 밑에 코드 
-		membersList = sqlSession.selectList("mapper.member.selectAllMemberList"); 
-		return membersList;
-	}
-```
+---
 
 
 
@@ -366,22 +604,6 @@ jdbc.password=1234
 ```XML
 <!-- 이렇게 줄여서 사용하겠다 -->
 <typeAlias type="com.spring.member.vo.MemberVO"  alias="memberVO" /> 
-```
-
-
-
-- `MemberVO.java`
-
-```java
-@Component("memberVO")
-public class MemberVO {
-	private String id;
-	private String pwd;
-	private String name;
-	private String email;
-	private Date joinDate;
-	
-	..생략
 ```
 
 
