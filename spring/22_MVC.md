@@ -50,6 +50,30 @@
 
 
 
+#### 1. Action-mybatis와 DAO와 연결 -> sqlsession부분
+
+- `DAO.java`
+
+```java
+@Autowired
+	private SqlSession sqlSession;
+```
+
+- `action-mybatis.xml`
+
+```xml
+<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+```
+
+
+
+
+
+####  2. Pom.xml에 mybatis.xml  태그 설정(dependency작성)
+
 - `Pom.xml`
 
 ```xml
