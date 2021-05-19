@@ -19,7 +19,7 @@
 - [Maven 기본 스프링(MVC생성/IN-OUT 확인)](./spring/18_Maven2.md)
 - [Maven 기본 스프링(비즈니스서비스연결)](./spring/18_Maven2-1.md)
 - [Maven 기본 스프링(Database 연결)](./spring/18_Maven2-2.md)
-- [Maven 주의 사항](./spring/19_Maven3.md)
+- [Maven 주의 사항 및 오류](./spring/19_Maven3.md)
 - [REST](./spring/20_REST.md)
 - [Desigin_Thinking](./spring/21_Design_Thinking.md)
 
