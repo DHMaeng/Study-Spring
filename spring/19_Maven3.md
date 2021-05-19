@@ -36,6 +36,8 @@
 
 `loginForm.jsp` 테이블에 있는 값이 Id : hong/ pwd : 1212 한 다음에 다시 잘못된 걸로 로그인 하면 여전히 로그인이 되는데 
 
+
+
 - `memberControllerImpl.java`
 
 > 아래와 같이 session을 사용하면 30분간 데이터가 유지되기 때문이다. 
@@ -45,6 +47,8 @@ if(memberVO != null) {
 	    HttpSession session = request.getSession();
 	    session.setAttribute("member", memberVO);
 ```
+
+
 
 - result.jsp
 
@@ -58,4 +62,16 @@ if(memberVO != null) {
 
 
 
+---
 
+
+
+- `pom.xml`에 action-mybatis dependency태그 설정 안할시
+
+![](../img/error-pom.xml.png)
+
+
+
+- `web.xml`에 action-mybatis 설정 누락시
+
+![](../img/error.png)
