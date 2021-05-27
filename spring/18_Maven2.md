@@ -137,6 +137,8 @@ private MemberVO memberVO ; -> @Component("memberVO") //memberVO.java 각각 이
 }
 ```
 
+ModelAndView : 경로와 데이터를 다 저장한다.
+
 
 
 뷰의 이름(경로)를 설정해주려면
