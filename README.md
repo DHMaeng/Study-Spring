@@ -22,6 +22,8 @@
 - [Maven 주의 사항 및 오류](./spring/19_Maven3.md)
 - [REST](./spring/20_REST.md)
 - [Desigin_Thinking](./spring/21_Design_Thinking.md)
+- [AI란?](./spring/22_AI.md)
+- [papago service](./spring/24_papago.md)
 
 
 
