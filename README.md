@@ -24,6 +24,8 @@
 - [Desigin_Thinking](./spring/21_Design_Thinking.md)
 - [AI란?](./spring/23_AI.md)
 - [papago service](./spring/24_papago.md)
+- [Speech Recognition](./spring/25_Speech_Recognition.md)
+- [api](./spring/26_API.md)
 
 
 
