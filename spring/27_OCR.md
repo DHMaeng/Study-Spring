@@ -82,9 +82,11 @@ result = aiService.clovaOCRService(filePathName);
 
 ![](../img/ai7.PNG)
 
+
+
 ```java
-String apiURL = "https://d8bc8eabae434543b22405af1903012e.apigw.ntruss.com/custom/v1/9102/493306f9407f8f0a47b34cfbcd996a1293750e8d0762a509fd91d5352c6dd8fa/infer";
-String secretKey = "YW10SUtHTFJPRkpKaHJKbWJ0QWJBdkx5Z09jRkx1T20=";
+String apiURL = "~";
+String secretKey = "~";
 		String imageFile = filePathName;
 ```
 
