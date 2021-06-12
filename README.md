@@ -27,6 +27,10 @@
 - [CLOVA Speech Recognition](./spring/25_Speech_Recognition.md)
 - [api](./spring/26_API.md)
 - [CLOVA OCR](./spring/27_OCR.md)
+- [MYSQL DB 연결하기](./spring/28_DB.md)
+- [CLOVA TTS](./spring/29_TTSmd)
+- [CLOVA chatbot](./spring/30_chatbot.md)
+- [JS 흑백 컬러화](./spring/31_jsFix.md)
 
 
 
