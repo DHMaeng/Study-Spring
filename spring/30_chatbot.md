@@ -16,6 +16,19 @@
 		<script src="<c:url value='resources/js/chatbot2.js'/>"></script>
 		<link rel="stylesheet" type="text/css" href="resources/css/chatbot.css">
 	</head>
+
+```
+
+> 채팅에 메시지 입력 후 전송 버튼을 누르면 chatbot2.js에 $('#chatForm').on('submit', function(event)으로 가게 됌 거기서 callAjax호출하여 메시지가 전달된다.
+
+```
+<!--  질문 입력 폼 -->
+			<div>
+				<form id="chatForm" method="post">
+					<input type="text" id="message" name="message" size="30" placeholder="" autofocus>
+					<input type="submit" id="btnSubmit" value="전송">
+				</form>
+			</div> <br>
 ```
 
 
@@ -42,7 +55,7 @@ url:"chatbotCall", // 일로 보내고
 				result = JSON.parse(result); //parse 메소드는 string 객체를 JSON 객체로 변환시켜줌
 				//alert(result);
 				//console.log(result);
-				var bubbles = result.bubbles; //"bubbles":[{"type":"text","data":{"description":"어서와 클로바는 처음이지? 혼자왔니?"} 가 드감
+				var bubbles = result.bubbles; //[{"type":"text","data":{"description":"어서와 클로바는 처음이지? 혼자왔니?"} 가 드감
                 bubbles[b].data.description //어서와 클로바는 처음이지? 혼자왔니?
 ```
 
@@ -63,8 +76,6 @@ url:"chatbotCall", // 일로 보내고
 ```
 
 [JSON에 대해 자세히](./spring/13_summary.md)
-
-
 
 
 
@@ -96,6 +107,8 @@ url:"chatbotCall", // 일로 보내고
 
 ### 2. controller
 
+![image-20210612223602807](../img/chatbot.PNG)
+
 `HomeController.java`
 
 > `ttsResult.jsp` 연결
@@ -110,25 +123,17 @@ url:"chatbotCall", // 일로 보내고
 
 
 
-`AIController.java`
+`ChatbotController.java`
 
-> service 호출 filepathName과 language넘겨줌
-
-```java
-result = aiService.clovaTextToSpeech(filePathName, language);
-```
+> js에서 출발하여 chatbotService, STTService, TTSService 들을 연결시켜준다.
 
 
 
 ### 3. service
 
-`AIService.java`
+**`ChatbotService.java`**
 
-> controller에서 부터 만들면 된다!  -> service -> serviceImpl 순으로 만든 다음 코드 작성
-
-
-
-`main메소드`
+​	`main메소드`
 
 > api, scret값 설정
 
@@ -137,31 +142,25 @@ String apiURL = "~";//애플리케이션 클라이언트 아이디값";
 String clientSecret = "~";//애플리케이션 클라이언트 시크릿값";
 ```
 
-`jsonToString 메소드`
+​	`jsonToString 메소드`
 
-> 안녕하세요 무엇을 도와드릴까요? 만 뽑아 주는 메소드
+> 메시지만 뽑아 주는 메소드
 
 ```java
 public static String jsonToString(String jsonStr)
 ```
 
->
 
-```java
 
-```
+**`STTService.java`**
 
-> 
+> fileUpload ->chatbotController -> STTService 순으로 호출되어 녹음된 음성파일을 크로바로 보내 텍스트로 받고 그것을 txt파일로 저장한다.
 
-```java
 
-```
 
-> 
+**`TTSService.java`**
 
-```java
-
-```
+> callAjaxTTS -> chatbotController(/chatbotTTS) -> TTSService 순으로 호출되어 텍스트를 크로바로 보내 음성파일로 만들어 저장하고 callAjaxTTS로 파일 이름을 보내준다.
 
 
 
