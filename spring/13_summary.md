@@ -276,11 +276,11 @@ $.ajax({
 
 
 
-1) 배열(Array)인 경우 : {"name":"식빵","family":"웰시코기","age":1,"weight":2.14}
+1) 문자열인경우
 
 2) 오브젝트인 경우 
 
-
+![img](../img/json.PNG)
 
 ```js
 {
@@ -474,19 +474,39 @@ name-value가 콜론으로 잘 이어져있고,
 
 
 
+1. JSON.parse
+
+서버에서 json dataq쿼리의 결과값은 객체(object) 형태로 유입되기 때문에 이럴 
+
+경우는 자바스크립트가 사용 할 수 있는 객체 형태로 해석하고 변환할 필요가 있다
+
+```js
+// Sever Object
+
+var SERVER_OBJ = '{"이름": "김자바","직업": "개발자","나이": "20"}';
+
+var parse = JSON.parse(SERVER_OBJ);
+
+console.log(parse);
+
+// 결과 => Object {이름: "김자바", 직업: "개발자", 나이: "20"} 
+//이와 같이 객체.필드 형태로 사용하고자 한다면 반드시 JSON.parse 를 거쳐야 한다.
+```
 
 
-#### JSON.stringify() 메소드
 
-JSON.stringify() 메소드는 인수로 전달받은 자바스크립트 객체를 문자열로 변환하여 반환합니다.
+2. JSON.stringify 
 
-http://tcpschool.com/examples/tryit/tryhtml.php?filename=json_use_js_01
+데이터를 서버에 전송하고자 할 때는 
 
-#### JSON.parse() 메소드
+문자열(string) 형태로 전송해야 되므로 stringify를 사용한다.
 
-JSON.parse() 메소드는 JSON.stringify() 메소드와는 반대로 인수로 전달받은 문자열을 자바스크립트 객체로 변환하여 반환합니다.
+```js
+var stringify = JSON.stringify(parse);
 
-http://tcpschool.com/examples/tryit/tryhtml.php?filename=json_use_js_02
+console.log(stringify);
 
-출처 : http://tcpschool.com/json/json_use_js
+// 결과 => {"이름":"김자바","직업":"개발자","나이":"20"}
+```
 
+주의 할점은 반드시 "key" : "value"는 따옴표로 감싸지는 형태가 되어야함
