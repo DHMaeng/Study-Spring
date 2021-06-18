@@ -24,9 +24,36 @@
 
 ### 오류
 
-**http: 404 페이지를 찾을 수 없습니다.**
+**http: 404 페이지를 찾을 수 없습니다.** 여러가지가 존재
 
 `servlet-context.xml`의 경로와 home.jsp의 위치를 확인!
+
+또 controller도 확인해야한다! 컨트롤러가 있어야 view와 연결이 된다. 항상 조심하자..ㅠㅠ
+
+```java
+//나머지 폼 형식도 모두 컨트롤러가 존재해야 view와 연결된다!!
+	@RequestMapping(value = "/member/*Form.do", method =  RequestMethod.GET)
+	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+```
+
+
+
+---
+
+
+
+`updateForm.jsp` 오류
+
+데이터 업데이트시 프라이머리 값도 보내는 데이터에 실어서 보내야한다. 따라서 hidden으로 보내라~
+
+```jsp
+<input type=hidden name="tid" value="${member.tid}"> <!-- primary값 hidden으로 보내야 한다! --> 
+```
 
 
 
