@@ -102,3 +102,26 @@ if(memberVO != null) {
 - `web.xml`에 action-mybatis 설정 누락시
 
 ![](../img/error.png)
+
+
+
+
+
+- `consider upgrading MySQL client`
+
+> 해당 에러는 연결하는 DB (MySQL, Oracle 등의 사용하고 있는 DB) 의 version 과 
+>
+> 스프링 Maven 의 pom.xml 의 <dependency> 기입한 버전이 다를 경우 많이 발생한다.
+
+1) 사용하고 있는 mysql 로 들어가서 **SELECT version( );** 으로 버전을 확인한다.
+
+**2) 체크한 Mysql 의 버전과 Maven 프로젝트 pom.xml 에 기입한 정보가 같은지 확인한다.**
+
+```xml
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+   <version>[수정하고자 하는 버전]</version>
+</dependency>
+```
+
